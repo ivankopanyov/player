@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style type="text/css">
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(#dee9fb, #edf3ff);
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    span {
+        color: #b1bac9;
+        font-family: Tahoma, Verdana, sans-serif;
+    }
+
+    button {
+        color: #b1bac9;
+        font-family: Tahoma, Verdana, sans-serif;
+        border-radius: 50%;
+        border: none;
+        background-color: #dee9fb;
+        font-size: large;
+        padding: 0px;
+        box-shadow:
+            6px 6px 8px 2px rgba(185, 196, 216, 0.8),
+            -2px -2px 4px 0px rgba(185, 196, 216, 0.8) inset,
+            -6px -6px 8px 2px rgba(255, 255, 255, 0.8),
+            4px 4px 8px 0px rgba(255, 255, 255, 0.8) inset;
+    }
+
+    .full {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+
+    .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: auto;
+        margin: 30px 30px 10px 30px;
+    }
+
+    .cover {
+        display: flex;
+        justify-content: center;
+        height: auto;
+        margin: 10px 0 10px 0;
+    }
+
+    .meta {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        margin: 10px 0 10px 0;
+    }
+
+    .duration {
+        margin: 10px 15px 20px 15px;
+    }
+
+    .ctl {
+        display: flex;
+        justify-content: center;
+        height: auto;
+        margin-bottom: 60px;
+    }
+
+    .time {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: auto;
+        font-size: small;
+        margin: 0 15px 5px 15px;
+    }
+    
+    .time-ctl {
+        display: flex;
+        align-items: center;
+        height: auto;
+    }
+    
+    .clicked-button {
+        background-color: #84a3fd;
+        color: #ffffff;
+        box-shadow:
+            6px 6px 8px 2px rgba(185, 196, 216, 0.8),
+            4px 4px 8px 2px rgba(47, 81, 198, 0.4) inset,
+            -6px -6px 8px 2px rgba(255, 255, 255, 0.8);
+    }
+
+    .nav-button {
+        width: 44px;
+        height: 44px;
+    }
+
+    .ctl-button {
+        width: 80px;
+        height: 80px;
+        margin: 0 10px 0 10px;
+    }
+
+    .cover-container {
+        border-radius: 50%;
+        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 220px;
+        height: 220px;
+        background-color: #dee9fb;
+        box-shadow:
+            20px 20px 20px 20px rgba(185, 196, 216, 0.4),
+            -20px -20px 20px 20px rgba(255, 255, 255, 0.4),
+            -2px -2px 4px 0px rgba(185, 196, 216, 0.8) inset,
+            4px 4px 4px 0px rgba(255, 255, 255, 0.8) inset;
+    }
+
+    .cover-background {
+        border-radius: 50%;
+        border: none;
+        width: 95%;
+        height: 95%;
+        background: linear-gradient(#bbaeda, #dc8099);
+        box-shadow:
+            0px 0px 8px 4px rgba(185, 196, 216, 0.8) inset;
+    }
+
+    .thumbnail-container {
+        border-radius: 50%;
+        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30px;
+        height: 30px;
+        background: linear-gradient(#edf3ff, #ffffff);
+        box-shadow:
+            5px 5px 10px 5px rgba(185, 196, 216, 0.4),
+            -5px -5px 10px 5px rgba(255, 255, 255, 0.4);
+        margin-left: -100%;
+    }
+
+    .thumbnail {
+        border-radius: 50%;
+        border: none;
+        width: 10px;
+        height: 10px;
+        background-color: #657cc8;
+        box-shadow: 0px 0px 8px 4px rgba(185, 196, 216, 0.8) inset;
+    }
+
+    .timeline-container {
+        width: 100%;
+        height: 3px;
+    }
+
+    .timeline-background {
+        background-color: #b4bbc8;
+        height: 100%;
+        margin: 0 15px 0 15px;
+        border-radius: 3px;
+        border: none;
+    }
+
+    .timeline {
+        background-color: #657cc8;
+        width: 0%;
+        height: 100%;
+        border-radius: 3px;
+        border: none;
+    }
+
+    .name {
+        color: #7b8392;
+        font-size: xx-large;
+        margin-bottom: 10px;
+    }
+</style>
+<body>
+    <div class="full">
+        <div class="nav">
+            <button id="back" class="nav-button">←</button>
+            <span>FLATING NOW</span>
+            <button id="list" class="nav-button">≡</button>
+        </div>
+        <div class="cover">
+            <div class="cover-container">
+                <div class="cover-background"></div>
+            </div>
+        </div>
+        <div class="meta">
+            <span class="name">Lose it</span>
+            <span>Flume ft. Vic Mensa</span>
+        </div>
+        <div class="duration">
+            <div class="time">
+                <span id="time">00:00</span>
+                <span>01:44</span>
+            </div>
+            <div class="time-ctl">
+                <div class="timeline-container">
+                    <div class="timeline-background">
+                        <div id="timeline" class="timeline"></div>
+                    </div>
+                </div>
+                <div id="position" class="thumbnail-container">
+                    <div class="thumbnail"></div>
+                </div>
+            </div>
+        </div>
+        <div class="ctl">
+            <button id="prev" class="ctl-button">&#x25C0&#xFE0E&#x25C0&#xFE0E</button>
+            <button id="pause" class="ctl-button">||</button>
+            <button id="next" class="ctl-button">&#x25B6&#xFE0E&#x25B6&#xFE0E</button>
+        </div>
+    </div>
+    <script>
+        let totalSeconds = 0, intervalID = 0;
+        const limitSeconds = 104;
+
+        const pause = document.getElementById("pause");
+        pause.addEventListener("click", () => {
+            if (pause.className === "ctl-button") {
+                pause.className = "clicked-button ctl-button";
+                stop();
+            } else {
+                pause.className = "ctl-button";
+                start();
+            }
+        });
+
+        const prev = document.getElementById("prev");
+        prev.addEventListener("pointerdown", () => prev.className = "clicked-button ctl-button");
+        prev.addEventListener("pointerup", () => {
+            prev.className = "ctl-button";
+            pause.className = "ctl-button";
+            restart();
+        });
+        prev.addEventListener("pointerout", () => {
+            prev.className = "ctl-button";
+            pause.className = "ctl-button";
+            restart();
+        });
+
+        const next = document.getElementById("next");
+        next.addEventListener("pointerdown", () => next.className = "clicked-button ctl-button");
+        next.addEventListener("pointerup", () => {
+            next.className = "ctl-button";
+            pause.className = "ctl-button";
+            restart();
+        });
+        next.addEventListener("pointerout", () => {
+            next.className = "ctl-button";
+            pause.className = "ctl-button";
+            restart();
+        });
+
+        const back = document.getElementById("back");
+        back.addEventListener("pointerdown", () => back.className = "clicked-button nav-button");
+        back.addEventListener("pointerup", () => back.className = "nav-button");
+        back.addEventListener("pointerout", () => back.className = "nav-button");
+
+        const list = document.getElementById("list");
+        list.addEventListener("pointerdown", () => list.className = "clicked-button nav-button");
+        list.addEventListener("pointerup", () => list.className = "nav-button");
+        list.addEventListener("pointerout", () => list.className = "nav-button");
+
+
+        const time = document.getElementById("time");
+        const position = document.getElementById("position");
+        const timeline = document.getElementById("timeline");
+
+        function start() {
+            intervalID = setInterval(() => {
+                totalSeconds++;
+                if (totalSeconds > limitSeconds)
+                    totalSeconds = 0;
+
+                const seconds = (totalSeconds % 60).toString().padStart(2, "0");
+                const minutes = Math.floor(totalSeconds / 60).toString().padStart(2, "0");
+                const ratio = totalSeconds / limitSeconds;
+
+                time.innerHTML = `${minutes}:${seconds}`;
+                position.style.marginLeft = `-${100 - ratio * 91}%`;
+                timeline.style.width = `${ratio * 100}%`;
+            }, 1000);
+        }
+
+        function stop() {
+            clearInterval(intervalID);
+        }
+
+        function restart() {
+            stop();
+            time.innerHTML = "00:00";
+            position.style.marginLeft = "-100%";
+            timeline.style.width = "0%";
+            totalSeconds = 0;
+            start();
+        }
+
+        start();
+    </script>
+</body>
+</html>
